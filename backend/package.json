@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "tsx watch --clear-screen=false src/server.ts"
+    "dev": "tsx watch --clear-screen=false src/server.ts",
+    "build": "npm i && node src/server.ts"
   },
   "type": "module",
   "keywords": [],
