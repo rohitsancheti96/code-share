@@ -1,5 +1,6 @@
 import express from 'express';
-import { ENV } from './lib/env';
+import { ENV } from './lib/env.js';
+
  
 const app = express();
 
@@ -21,6 +22,13 @@ app.get("/health", (req, res) => {
 app.use((req, res) => {
     res.status(404).json({ message: "Not Found", path: req.path });
 });
+
+// Global Error Handler
+app.use((err: any, req: any, res: any, next: any) => {
+    console.error('[Global Error]', err);
+    res.status(500).json({ message: "Internal Server Error", error: err.message });
+});
+
 
 if (!process.env.VERCEL) {
     const port = ENV.PORT || 3000;
